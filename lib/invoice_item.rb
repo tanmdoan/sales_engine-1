@@ -1,6 +1,11 @@
 require 'bigdecimal'
+require_relative 'unit_conversion'
+
 
 class InvoiceItem
+
+  include UnitConversion
+
 
   attr_reader   :id,
                 :item_id,
@@ -31,10 +36,10 @@ class InvoiceItem
     invoice.status?
   end
 
-  private
-
-  def price(number)
-    BigDecimal.new(number.to_s) / 100
-  end
+  # private
+  #
+  # def price(number)
+  #   BigDecimal.new(number.to_s) / 100
+  # end
 
 end

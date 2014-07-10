@@ -1,6 +1,9 @@
 require_relative 'items_helper'
+require_relative 'unit_conversion'
 
 class Item
+
+  include UnitConversion
 
   attr_reader   :id,
                 :name,
@@ -27,9 +30,9 @@ class Item
     date != nil ? Date.parse(date) : date
   end
 
-  def price(number)
-    BigDecimal.new((number.to_f/100).to_s)
-  end
+  # def price(number)
+  #   BigDecimal.new((number.to_f/100).to_s)
+  # end
 
   def revenue
     if status?

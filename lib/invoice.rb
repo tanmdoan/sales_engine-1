@@ -1,6 +1,9 @@
 require_relative 'repository'
+require_relative 'unit_conversion'
 
 class Invoice < Repository
+
+  include UnitConversion
 
   attr_reader   :id,
                 :customer_id,
@@ -51,10 +54,10 @@ class Invoice < Repository
   end
 
 
-  private
-
-  def date_parse(date)
-    Date.parse(date) if date != nil
-  end
+  # private
+  #
+  # def date_parse(date)
+  #   Date.parse(date) if date != nil
+  # end
 
 end
