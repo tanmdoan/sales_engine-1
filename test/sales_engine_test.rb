@@ -84,7 +84,7 @@ class SalesEngineTest < Minitest::Test
   end
 
   def test_customer_invoice_relationship
-    customer                    = engine.customer_repository.find_by_id(1)
+    customer                    =  engine.customer_repository.find_by_id(1)
     assert customer.invoices    == [@invoice]
   end
 

@@ -7,4 +7,5 @@ module UnitConversion
   def date_parse(date)
     Date.parse(date) if date != nil
   end
+  
 end

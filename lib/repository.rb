@@ -12,23 +12,27 @@ class Repository
 
   def random() @objects.sample end
 
-  def method_missing(meth, *args, &block)
-    case
-    when meth.to_s =~ /^find_by_(.+)$/     then @objects.detect do |object|
-      object.send($1) == args.first
-    end
-  when meth.to_s =~ /^find_all_by_(.+)$/ then @objects.select do |object|
-     object.send($1) == args.first
-   end
-    else super
+  def method_missing(meth, *args)
+    case meth.to_s
+    when /^find_by_(.+)$/
+      @objects.detect do |object|
+        object.send($1) == args.first
+      end
+    when /^find_all_by_(.+)$/
+      @objects.select do |object|
+        object.send($1) == args.first
+      end
+    else
+      super
     end
   end
 
   def respond_to?(meth)
-    case
-    when meth.to_s =~ /^find_by_.*$/ ||
-       meth.to_s =~ /^find_all_by_.*$/ then true
-    else super
+    case meth.to_s
+    when /^find_by_.*$/ || /^find_all_by_.*$/
+      true
+    else
+      super
     end
   end
 
